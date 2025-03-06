@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+@plugin 'daisyui';
+
+.lexend {
+	font-family: 'Lexend', sans-serif;
+	font-optical-sizing: auto;
+}
+
+.archivo {
+	font-family: 'Archivo Black', sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+body {
+	@apply bg-base-300 m-0 min-h-full p-0;
+	font-family: 'Lexend', sans-serif;
+}
+
+@keyframes move {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 2em 2em;
+	}
+}
+
+.diagonal-stripes {
+	--stripe-color: rgba(0, 0, 0, 0.1);
+	background: linear-gradient(
+		135deg,
+		var(--stripe-color) 0%,
+		var(--stripe-color) 25%,
+		transparent 25%,
+		transparent 50%,
+		var(--stripe-color) 50%,
+		var(--stripe-color) 75%,
+		transparent 75%,
+		transparent 100%
+	);
+	background-size: 3em 3em;
+	background-attachment: fixed;
+	background-repeat: repeat;
+	animation: move 5s linear infinite;
+	mix-blend-mode: overlay;
+}
