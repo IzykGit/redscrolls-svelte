@@ -52,7 +52,7 @@
 					{/if}
 					<h2 class="text-2xl font-bold">{name}</h2>
 				</div>
-				<div>{}</div>
+				<div></div>
 			</div>
 			{#each features as feature}
 				<div>{feature}</div>
