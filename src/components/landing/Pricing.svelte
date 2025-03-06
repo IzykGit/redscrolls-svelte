@@ -7,21 +7,60 @@
 			icon: 'game-icons:hiking',
 			price: 4,
 			mostPopular: true,
-			features: ['Feature 1', 'Feature 2', 'Feature 3']
+			features: [
+				{
+					name: '100 Messages Per Month',
+					has: true
+				},
+				{
+					name: '1 Character',
+					has: false
+				},
+				{
+					name: 'Quests',
+					has: false
+				}
+			]
 		},
 		{
 			name: 'Hero',
 			icon: 'game-icons:king',
 			price: 9,
 			mostPopular: false,
-			features: ['Feature 1', 'Feature 2', 'Feature 3']
+			features: [
+				{
+					name: '100 Messages Per Month',
+					has: true
+				},
+				{
+					name: '10 Characters',
+					has: true
+				},
+				{
+					name: 'Quests',
+					has: true
+				}
+			]
 		},
 		{
 			name: 'Legend',
 			icon: 'game-icons:fire-silhouette',
 			price: 19,
 			mostPopular: false,
-			features: ['Feature 1', 'Feature 2', 'Feature 3']
+			features: [
+				{
+					name: '1,000 Messages Per Month',
+					has: true
+				},
+				{
+					name: 'Unlimited Characters',
+					has: true
+				},
+				{
+					name: 'Quests',
+					has: true
+				}
+			]
 		}
 	];
 </script>
@@ -30,12 +69,17 @@
 	name,
 	icon,
 	mostPopular = false,
-	features = []
+	price,
+	features
 }: {
 	name: string;
 	icon: string;
 	mostPopular?: boolean;
-	features?: string[];
+	price: number;
+	features: {
+		name: string;
+		has: boolean;
+	}[];
 })}
 	<div class="card relative overflow-hidden py-px">
 		<div
@@ -44,7 +88,7 @@
 			"
 		></div>
 		<div class="card bg-base-100 relative z-10 flex flex-col overflow-hidden">
-			<div class="bg-primary grid w-full grid-cols-[auto_1fr_auto] gap-4 p-4">
+			<div class="bg-primary grid w-full grid-cols-1 gap-4 p-4 lg:grid-cols-[auto_1fr_auto]">
 				<Icon {icon} width={48} height={48} />
 				<div class="flex flex-col">
 					{#if mostPopular}
@@ -52,11 +96,31 @@
 					{/if}
 					<h2 class="text-2xl font-bold">{name}</h2>
 				</div>
-				<div></div>
+				<div class="flex items-start text-sm">
+					<div>$</div>
+					<div class="-mt-1 text-4xl font-bold">{price}</div>
+					<div>/mo</div>
+				</div>
 			</div>
-			{#each features as feature}
-				<div>{feature}</div>
-			{/each}
+			<div class="grid grid-cols-[auto_auto_1fr] items-center gap-2 p-4">
+				{#each features as feature}
+					<div>
+						<div class="bg-primary h-1 w-1 rounded-full"></div>
+					</div>
+					{#if feature.has}
+						<div class="bg-success text-success-content flex h-6 w-6 rounded-sm">
+							<Icon icon="bx:bx-check" width={24} height={24} />
+						</div>
+					{:else}
+						<div
+							class="bg-error text-error-content flex h-6 w-6 items-center justify-center rounded-sm"
+						>
+							<Icon icon="bx:bx-x" width={24} height={24} />
+						</div>
+					{/if}
+					<div>{feature.name}</div>
+				{/each}
+			</div>
 		</div>
 	</div>
 {/snippet}

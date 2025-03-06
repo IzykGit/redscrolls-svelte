@@ -2,11 +2,21 @@
 	import { goto } from '$app/navigation';
 	import { fly } from 'svelte/transition';
 	import Icon from '@iconify/svelte';
+	import { page } from '$app/state';
+	import NavUserTip from '$lib/tooltips/NavUserTip.svelte';
+
+	const {
+		isMobile = false,
+		navigate
+	}: {
+		isMobile?: boolean;
+		navigate: (url?: string) => void;
+	} = $props();
 
 	let state = $state({
 		user: null,
 		isAuthed: false,
-		locked: false
+		locked: isMobile
 	});
 
 	let container: HTMLDivElement;
@@ -14,26 +24,57 @@
 	let items = $derived([
 		[
 			{
+				icon: 'flowbite:close-sidebar-alt-solid',
+				name: 'Close Sidebar',
+				visible: isMobile,
+				tooltip: null,
+				action: () => navigate()
+			},
+			{
 				icon: state.locked ? 'flowbite:close-sidebar-alt-solid' : 'flowbite:open-sidebar-alt-solid',
 				name: 'Toggle Sidebar',
-
+				visible: !isMobile,
+				tooltip: null,
 				action: () => (state.locked = !state.locked)
 			},
-			{ icon: 'bx:bx-home', name: 'Home', action: () => goto('/') },
-			{ icon: 'bx:bx-user', name: 'Profile', action: () => goto('/profile') },
-			{ icon: 'bx:bx-message', name: 'Messages', action: () => goto('/messages') },
-			{ icon: 'bx:bx-book', name: 'Library', action: () => goto('/library') }
+			{
+				icon: 'bx:bx-home',
+				name: 'Home',
+				action: () => navigate('/'),
+				tooltip: null,
+				visible: true
+			},
+
+			{
+				icon: 'bx:bx-book',
+				name: 'Library',
+				action: () => navigate('/library'),
+				tooltip: null,
+				visible: true
+			}
 		],
 		[
-			{ icon: 'bx:bx-cog', name: 'Settings', href: '/settings', type: 'link' },
-			{ icon: 'ri:user-5-fill', name: 'Username', action: () => console.log('Username') }
+			{
+				icon: 'bx:bx-cog',
+				name: 'Settings',
+				action: () => navigate('/settings'),
+				tooltip: null,
+				visible: true
+			},
+			{
+				icon: 'ri:user-5-fill',
+				name: 'Username',
+				action: () => console.log('Username'),
+				tooltip: NavUserTip,
+				visible: true
+			}
 		]
 	]);
 </script>
 
 <div
 	bind:this={container}
-	class="border-r-base-100 bg-base-200 hidden h-full border-r transition-all duration-150 lg:block {state.locked
+	class="border-r-base-100 bg-base-200 h-full border-r transition-all duration-150 {state.locked
 		? ' overflow-hidden '
 		: ''}"
 	style="width: {!state.locked ? '64' : '220'}px"
@@ -42,7 +83,7 @@
 	<div class="grid h-full grid-rows-[1fr_auto]">
 		{#each items as item}
 			<div>
-				{#each item as { name, icon, action }, index}
+				{#each item.filter((i) => i.visible) as { name, icon, tooltip, action }, index}
 					<div data-tip={name} class="tooltip-right {!state.locked ? 'tooltip' : ''} ">
 						<button
 							onclick={action}
