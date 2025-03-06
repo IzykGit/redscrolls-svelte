@@ -55,7 +55,6 @@ class Global {
 		//  - Maybe rethink how we're spreading the object and instead create a scaffold
 		//  - Then populate the scaffold with the expanded object resulting in a constructed new object
 		traverseExpansions(obj: any) {
-			console.group('Traverse Expansions', origin);
 			for (const key in obj) {
 				if (typeof obj[key] === 'object') {
 					obj[key] = Global.tools.traverseExpansions(obj[key]);
@@ -67,18 +66,8 @@ class Global {
 			}
 
 			delete obj.expand;
-			console.groupEnd();
 			// console.log("This is the obj:", obj)
 			return obj;
-		},
-
-		sessionFactory(session: any) {
-			console.log('Session', session);
-			const res = { ...session };
-
-			res.character = { ...session.expand.character };
-
-			return res;
 		},
 
 		/**
@@ -101,7 +90,10 @@ class Global {
 		objectMinifier(obj: any) {
 			const newObj = {} as any;
 			for (const key in obj) {
-				const newKey = key.substring(0, 2);
+				const newKey = key
+					.split('_')
+					.map((k) => k.substring(0, 2))
+					.join('_');
 				if (typeof obj[key] === 'object') {
 					newObj[newKey] = Global.tools.objectMinifier(obj[key]);
 				} else {

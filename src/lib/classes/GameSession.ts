@@ -18,6 +18,7 @@ class GameSession {
 			'quests.plots',
 			'quests.plots.tags',
 			'chat_history',
+			'metadata',
 
 			// Character
 			'character',
@@ -41,11 +42,11 @@ class GameSession {
 			expand: expansionFields
 		});
 
+		console.log(char);
 		let res = Global.tools.traverseExpansions(char);
 		res = Global.tools.cullFields(res, ['created', 'updated', 'collectionId', 'collectionName']);
-		console.log(res);
-		// res = Global.tools.objectMinifier(res);
-		// delete res.expand;
+		console.log(res.character.inventory);
+		res = Global.tools.objectMinifier(res);
 
 		return res;
 	}
