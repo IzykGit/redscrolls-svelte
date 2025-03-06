@@ -1,38 +1,15 @@
 <script>
-	import AppPreview from '../components/landing/AppPreview.svelte';
-	import CallToAction from '../components/landing/CallToAction.svelte';
-	import Features from '../components/landing/Features.svelte';
-	import Footer from '../components/landing/Footer.svelte';
-	import Hero from '../components/landing/Hero.svelte';
-	import Pricing from '../components/landing/Pricing.svelte';
-	import Themes from '../components/landing/Themes.svelte';
-	import DarkStripes from '../components/surfaces/DarkStripes.svelte';
+	import { onMount } from 'svelte';
+	import LandingMain from '../components/landing/LandingMain.svelte';
+	import App from '$lib/App';
+
+	const isAuthed = $derived(App.user.isAuthed);
 </script>
 
 <div class="">
-	<div class="flex flex-col">
-		<!-- Hero Section -->
-		<Hero />
-		<DarkStripes>
-			<div class="flex flex-col items-center justify-center gap-4">
-				<!-- Content -->
-				<div
-					class="z-50 -mt-4 flex w-full flex-col gap-4 rounded-md bg-slate-800 p-4"
-					style="max-width: 1000px;"
-				>
-					<AppPreview />
-					<Features />
-					<Pricing />
-					<Themes />
-				</div>
-				<div class="flex w-full" style="max-width: 1000px;">
-					<CallToAction />
-				</div>
-			</div>
-			<div class="my-4"></div>
-		</DarkStripes>
-
-		<!-- Footer-->
-		<Footer />
-	</div>
+	{#if isAuthed()}
+		<p>Authed</p>
+	{:else}
+		<LandingMain />
+	{/if}
 </div>

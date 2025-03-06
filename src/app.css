@@ -2,6 +2,57 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 @plugin 'daisyui';
+@plugin "daisyui/theme" {
+	name: 'redscrolls-dark';
+	default: false; /* Not the default light theme */
+	prefersdark: true; /* Default to dark mode */
+	color-scheme: dark; /* Browser UI elements set to dark */
+
+	--color-base-100: oklch(15% 0.02 250); /* Deep slate */
+	--color-base-200: oklch(20% 0.03 250);
+	--color-base-300: oklch(25% 0.04 250);
+	--color-base-content: oklch(92% 0.05 250); /* Light text for contrast */
+
+	--color-primary: oklch(35% 0.25 260); /* Dark blue */
+	--color-primary-content: oklch(90% 0.01 260);
+
+	--color-secondary: oklch(40% 0.2 200); /* Muted teal */
+	--color-secondary-content: oklch(95% 0.01 200);
+
+	--color-accent: oklch(45% 0.2 160); /* Cyan-green */
+	--color-accent-content: oklch(98% 0.01 160);
+
+	--color-neutral: oklch(18% 0.05 250); /* Dark neutral */
+	--color-neutral-content: oklch(90% 0.01 250);
+
+	--color-info: oklch(55% 0.2 230); /* Soft blue */
+	--color-info-content: oklch(95% 0.01 230);
+
+	--color-success: oklch(50% 0.25 140); /* Emerald green */
+	--color-success-content: oklch(98% 0.01 140);
+
+	--color-warning: oklch(65% 0.2 80); /* Goldenrod */
+	--color-warning-content: oklch(20% 0.05 80);
+
+	--color-error: oklch(55% 0.3 30); /* Deep red */
+	--color-error-content: oklch(98% 0.01 30);
+
+	/* border radius */
+	--radius-selector: 1rem;
+	--radius-field: 0.25rem;
+	--radius-box: 0.5rem;
+
+	/* base sizes */
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+
+	/* border size */
+	--border: 1px;
+
+	/* effects */
+	--depth: 1;
+	--noise: 0;
+}
 
 .lexend {
 	font-family: 'Lexend', sans-serif;
