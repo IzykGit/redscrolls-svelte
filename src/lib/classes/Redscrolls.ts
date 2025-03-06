@@ -1,8 +1,12 @@
 import { PRIVATE_DEEPSEEK_API_URL, PRIVATE_DEEPSEEK_API_KEY } from "$env/static/private";
+import { PUBLIC_POCKETBASE_URL } from "$env/static/public";
+import PocketBase from "pocketbase"
 import type { IChat } from "$lib/@types/ChatInterface";
 
 class Redscrolls {
     instance: Redscrolls | null = null
+
+    static pb = new PocketBase(PUBLIC_POCKETBASE_URL)
 
     constructor() {
         if (this.instance) return this.instance;
