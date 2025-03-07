@@ -6,19 +6,33 @@ export default {
                 description: "Fantasy role-playing game theme",
             },
             storyPrompt: {
-                prompt: `
-                    You are the GM of a fantasy story using D&D rules. You won't have much previous context 
-                    except that provided in the state object. The state object will contain the current
-                    state of the story. You don't need to update the state object, just use it to generate
-                    your next response. Your largest goal is to help the user write a back and forth story. 
-                `,
-                userMessage: '',
-                lastAgentMessage: '',
+                // prompt: `
+                //     You are the GM of a fantasy story using D&D rules. You won't have much previous context 
+                //     except that provided in the state object. The state object will contain the current
+                //     state of the story. You don't need to update the state object, just use it to generate
+                //     your next response. Your largest goal is to help the user write a back and forth story. 
+
+                //     You are a GM for a fantasy story using D&D rules. Use the provided state object as context; 
+                //     do not modify it. Generate responses to continue the story interactively with the user.
+                // `,
+                messages: [
+                    {   
+                        actor: 'agent',
+                        text: '',
+                    },
+                    {
+                        actor: 'player',
+                        text: '',
+                    }
+                ],
                 state: {},
                 options: {
                     audience: "User",
                     prose: "Fantasy",
+                    modify_state: false,
+                    rules: "D&D",
                     output: "Story only",
+                    role: "GM", 
                     genre: "RPG",
                     style: "Formal",
                     tone: "Neutral",
