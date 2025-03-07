@@ -31,7 +31,7 @@ class Redscrolls {
             ];
         },
 
-        async testCompletion({ message }: any) {
+        async testCompletion(message: string) {
             const baseUrl = Redscrolls.deepseek.url;
 
             const body = {
