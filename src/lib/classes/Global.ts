@@ -87,15 +87,13 @@ class Global {
 		},
 		// Traverse the object, replace the keys with just the first letter of the key or a
 		// dot separated string of the first letters of the keys that lead to the value
-		objectMinifier(obj: any) {
+		minifyObject(obj: any) {
 			const newObj = {} as any;
 			for (const key in obj) {
-				const newKey = key
-					.split('_')
-					.map((k) => k.substring(0, 2))
-					.join('_');
+				// Remove vowels from the key and take the first 3 characters
+				const newKey = key.replaceAll(/[aeiou]/gim, '').substring(0, 3);
 				if (typeof obj[key] === 'object') {
-					newObj[newKey] = Global.tools.objectMinifier(obj[key]);
+					newObj[newKey] = Global.tools.minifyObject(obj[key]);
 				} else {
 					newObj[newKey] = obj[key];
 				}
