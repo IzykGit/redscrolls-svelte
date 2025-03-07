@@ -46,9 +46,9 @@
 			},
 
 			{
-				icon: 'bx:bx-book',
-				name: 'Library',
-				action: () => navigate('/library'),
+				icon: 'game-icons:embrassed-energy',
+				name: 'Characters',
+				action: () => navigate('/characters'),
 				tooltip: null,
 				visible: true
 			}

@@ -43,10 +43,14 @@ class GameSession {
 		});
 
 		console.log(char);
+		// Flatten "expand" fields
 		let res = Global.tools.traverseExpansions(char);
+
+		// Remove unnecessary fields
 		res = Global.tools.cullFields(res, ['created', 'updated', 'collectionId', 'collectionName']);
-		console.log(res.character.inventory);
-		res = Global.tools.objectMinifier(res);
+
+		// Minify the object
+		// res = Global.tools.minifyObject(res);
 
 		return res;
 	}
