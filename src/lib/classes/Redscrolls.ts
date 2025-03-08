@@ -51,6 +51,20 @@ class Redscrolls {
             return response?.choices?.find((choice: any) => choice.index === 0)?.message?.content || "No response";
         },
     }
+
+    // two steams, chat history and response with pocketbase
+    // make sure both timestamps align before user 
+
+    static manageData = {
+        
+        async useData() {
+        
+            
+            
+        },
+
+
+    }
 }
 
 export default Redscrolls

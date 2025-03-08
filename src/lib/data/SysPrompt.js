@@ -16,7 +16,7 @@ export default {
                 //     do not modify it. Generate responses to continue the story interactively with the user.
                 // `,
                 messages: [
-                    {   
+                    {
                         actor: 'agent',
                         text: '',
                     },
@@ -32,7 +32,7 @@ export default {
                     modify_state: false,
                     rules: "D&D",
                     output: "Story only",
-                    role: "GM", 
+                    role: "GM",
                     genre: "RPG",
                     style: "Formal",
                     tone: "Neutral",

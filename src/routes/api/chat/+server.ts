@@ -5,9 +5,10 @@ export async function POST(event) {
 
     if (!body.message) return new Response(JSON.stringify({ message: "Did not find message" }), { status: 400 });
 
-    const response = await Redscrolls.deepseek.testCompletion(body.message);
+    const deepseekResponse = await Redscrolls.deepseek.testCompletion(body.message);
 
-    return new Response(JSON.stringify(response), {
+
+    return new Response(JSON.stringify(deepseekResponse), {
         headers: {
             "Content-Type": "application/json",
         }
