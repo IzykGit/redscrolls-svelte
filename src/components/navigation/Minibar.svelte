@@ -46,7 +46,7 @@
 			},
 
 			{
-				icon: 'game-icons:embrassed-energy',
+				icon: 'game-icons:meeple-king',
 				name: 'Characters',
 				action: () => navigate('/characters'),
 				tooltip: null,
