@@ -7,6 +7,22 @@
 
 	const { id } = page.params;
 
+	const messages = [
+		{
+			id: '1',
+			session: '1',
+			message: 'Hello, I am a bot. How can I help you today?',
+			author: 'agent' as 'agent' | 'player' | 'character',
+			action: 'attack' as 'story' | 'choice' | 'initiative' | 'attack' | 'skill-check',
+			// Internal metadata information
+			messageId: '1', // UUID of Deepseek message for reference
+			inputTokens: 0,
+			outputTokens: 0,
+			cacheHitTokens: 0,
+			cacheMissTokens: 0
+		}
+	];
+
 	const state = $state({
 		ready: false,
 		input: '',
@@ -38,26 +54,23 @@
 
 	const getHistory = () => {
 		Redscrolls.pb
-			.collection('session')
+			.collection('sessions')
 			.getOne(id, {
-				expand: 'session,chat_history,quests,metadata,character.metadata,character.status'
+				expand: 'sessions,events,quests,metadata,characters,characters.metadata,characters.statuses'
 			})
 			.then((res) => {
 				if (!res) {
 					console.error('No session found');
 					return;
 				}
+				console.log('Session', res);
 				setSession(res);
 			});
 	};
 
 	onMount(() => {
-		Redscrolls.pb.collection('session').subscribe('*', (e) => {
-			console.group('Session Event');
-			console.log(e.action);
-			console.log(e.record);
+		Redscrolls.pb.collection('sessions').subscribe('*', (e) => {
 			getHistory();
-			console.groupEnd();
 		});
 
 		getHistory();
