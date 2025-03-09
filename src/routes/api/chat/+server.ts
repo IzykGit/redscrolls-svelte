@@ -20,6 +20,7 @@ export async function POST(event) {
 	{
 		// TODO: Move this into a helper function
 		// Create the chat event for the player's input
+		console.log('Creating chat event for player input');
 		const playerChatEvent = await Redscrolls.pb.collection('chat_events').create();
 		await Promise.all([
 			// Create the message and state for the player's input
@@ -29,15 +30,16 @@ export async function POST(event) {
 				chat_event: playerChatEvent.id
 			}),
 			// Create the state for the player's input
-			Redscrolls.pb.collection('states').create({
+			Redscrolls.pb.collection('chat_states').create({
 				state,
 				chat_event: playerChatEvent.id
 			})
 		]);
 
 		// Update the session with the new chat entry.
+		console.log('Updating session with player chat event');
 		await Redscrolls.pb.collection('sessions').update(sessionId, {
-			chat_events: [...session.chat_events, playerChatEvent.id]
+			events: [...session.events, playerChatEvent.id]
 		});
 	}
 
@@ -48,15 +50,19 @@ export async function POST(event) {
 		// TODO: The generate function should be moved into a helper function
 		// Generate the response from Deepseek
 		// TODO: Make an official method for handling a chat response completion
+		console.log('Generating response from Deepseek');
 		const agentResponse = await Deepseek.testCompletion(message);
+		console.log('Response from Deepseek', agentResponse);
 
 		// Create entry and update the session with the new chat entry.
+		console.log('Creating chat event for agent response');
 		const agentChatEvent = await Redscrolls.pb.collection('chat_events').create();
-		await Redscrolls.pb.collection('session').update(sessionId, {
-			chat_events: [...session.chat_events, agentChatEvent.id]
+		await Redscrolls.pb.collection('sessions').update(sessionId, {
+			events: [...session.events, agentChatEvent.id]
 		});
 
 		// Create the message for the AI's response
+		console.log('Creating message from response');
 		await Redscrolls.pb.collection('messages').create({
 			message: agentResponse,
 			author: 'player',
@@ -65,7 +71,8 @@ export async function POST(event) {
 
 		// Create the new state from the response
 		// TODO: Write a completion method to generate the state
-		const stateId = await Redscrolls.pb.collection('states').create({
+		console.log('Creating state from response');
+		const stateId = await Redscrolls.pb.collection('chat_states').create({
 			state: state,
 			chat_event: agentChatEvent.id
 		});
@@ -85,6 +92,7 @@ export async function POST(event) {
 	// Don't await this, we don't want to block the response
 	generate();
 
+	console.log('Returning success');
 	return new Response(JSON.stringify({ success: true }), {
 		headers: {
 			'Content-Type': 'application/json'

@@ -26,7 +26,8 @@
 	const state = $state({
 		ready: false,
 		input: '',
-		session: null as any
+		session: null as any,
+		events: [] as any
 	});
 
 	const handleMessage = () => {
@@ -48,12 +49,13 @@
 			});
 	};
 
-	const setSession = (session) => {
+	const setSession = (session: any) => {
 		let _session = Global.tools.traverseExpansions(session);
+		console.log('Session', _session);
 		state.session = _session;
 	};
 
-	const getHistory = () => {
+	const getSession = () => {
 		Redscrolls.pb
 			.collection('sessions')
 			.getOne(id, {
@@ -64,17 +66,16 @@
 					console.error('No session found');
 					return;
 				}
-				console.log('Session', res);
 				setSession(res);
 			});
 	};
 
 	onMount(() => {
 		Redscrolls.pb.collection('sessions').subscribe('*', (e) => {
-			getHistory();
+			getSession();
 		});
 
-		getHistory();
+		getSession();
 	});
 </script>
 
