@@ -16,7 +16,8 @@
 		"test": "npm run test:unit -- --run && npm run test:e2e",
 		"test:e2e": "playwright test",
 		"pb": "./.pb/pocketbase migrate && ./.pb/pocketbase serve",
-		"pb:migrate": "./.pb/pocketbase migrate"
+		"pb:migrate": "./.pb/pocketbase migrate",
+		"pb:squash": "rm -r ./.pb/pb_migrations && ./.pb/pocketbase migrate collections"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",

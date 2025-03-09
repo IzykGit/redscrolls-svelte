@@ -662,6 +662,20 @@ migrate((app) => {
           "type": "bool"
         },
         {
+          "autogeneratePattern": "",
+          "hidden": false,
+          "id": "text1466534506",
+          "max": 0,
+          "min": 0,
+          "name": "role",
+          "pattern": "",
+          "presentable": false,
+          "primaryKey": false,
+          "required": false,
+          "system": false,
+          "type": "text"
+        },
+        {
           "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
@@ -1002,8 +1016,8 @@ migrate((app) => {
       "viewRule": ""
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -1116,12 +1130,12 @@ migrate((app) => {
       ],
       "id": "pbc_1092069950",
       "indexes": [],
-      "listRule": "",
+      "listRule": "(user = @request.auth.id && deleted = false) || \"server\" = @request.auth.role",
       "name": "sessions",
       "system": false,
       "type": "base",
-      "updateRule": "",
-      "viewRule": ""
+      "updateRule": "\"server\" = @request.auth.role",
+      "viewRule": "(user = @request.auth.id && deleted = false) || \"server\" = @request.auth.role"
     },
     {
       "createRule": "",
