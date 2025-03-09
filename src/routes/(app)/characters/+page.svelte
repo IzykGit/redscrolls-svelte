@@ -4,7 +4,6 @@
 	import Redscrolls from '$lib/classes/Redscrolls';
 	import Themer from '$lib/classes/Themer';
 	import { onMount } from 'svelte';
-	import { createSubscriber } from 'svelte/reactivity';
 	import VanillaTilt from 'vanilla-tilt';
 
 	let state = $state({
@@ -27,7 +26,7 @@
 
 	onMount(() => {
 		Redscrolls.pb
-			.collection('session')
+			.collection('sessions')
 			.getFullList({ expand: 'session,quests,metadata,character.metadata,character.status' })
 			.then((res) => {
 				let sessions = res.map((session) => {

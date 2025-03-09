@@ -38,7 +38,8 @@
 			},
 			body: JSON.stringify({
 				message: state.input,
-				sessionId: id
+				sessionId: id,
+				state: {}
 			})
 		})
 			.then((res) => res.json())

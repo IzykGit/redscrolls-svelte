@@ -9,7 +9,7 @@ export async function POST(event) {
 	if (!sessionId)
 		return new Response(JSON.stringify({ message: 'Did not find sessionId' }), { status: 400 });
 
-	const session = await Redscrolls.pb.collection('session').getOne(sessionId);
+	const session = await Redscrolls.pb.collection('sessions').getOne(sessionId);
 
 	if (!session)
 		return new Response(JSON.stringify({ message: 'Session not found' }), { status: 404 });
@@ -36,7 +36,7 @@ export async function POST(event) {
 		]);
 
 		// Update the session with the new chat entry.
-		await Redscrolls.pb.collection('session').update(sessionId, {
+		await Redscrolls.pb.collection('sessions').update(sessionId, {
 			chat_events: [...session.chat_events, playerChatEvent.id]
 		});
 	}
