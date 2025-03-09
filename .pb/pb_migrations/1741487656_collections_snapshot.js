@@ -662,20 +662,6 @@ migrate((app) => {
           "type": "bool"
         },
         {
-          "autogeneratePattern": "",
-          "hidden": false,
-          "id": "text1466534506",
-          "max": 0,
-          "min": 0,
-          "name": "role",
-          "pattern": "",
-          "presentable": false,
-          "primaryKey": false,
-          "required": false,
-          "system": false,
-          "type": "text"
-        },
-        {
           "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
@@ -694,6 +680,49 @@ migrate((app) => {
           "presentable": false,
           "system": false,
           "type": "autodate"
+        },
+        {
+          "autogeneratePattern": "",
+          "hidden": false,
+          "id": "text1579384326",
+          "max": 255,
+          "min": 0,
+          "name": "name",
+          "pattern": "",
+          "presentable": false,
+          "primaryKey": false,
+          "required": false,
+          "system": false,
+          "type": "text"
+        },
+        {
+          "hidden": false,
+          "id": "file376926767",
+          "maxSelect": 1,
+          "maxSize": 0,
+          "mimeTypes": [
+            "image/jpeg",
+            "image/png",
+            "image/svg+xml",
+            "image/gif",
+            "image/webp"
+          ],
+          "name": "avatar",
+          "presentable": false,
+          "protected": false,
+          "required": false,
+          "system": false,
+          "thumbs": null,
+          "type": "file"
+        },
+        {
+          "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
         }
       ],
       "fileToken": {
@@ -756,8 +785,8 @@ migrate((app) => {
       "viewRule": "id = @request.auth.id"
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -888,12 +917,12 @@ migrate((app) => {
       "name": "characters",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -987,6 +1016,15 @@ migrate((app) => {
         },
         {
           "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
+        },
+        {
+          "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
           "onCreate": true,
@@ -1012,7 +1050,7 @@ migrate((app) => {
       "name": "quests",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     },
     {
@@ -1138,8 +1176,8 @@ migrate((app) => {
       "viewRule": "(user = @request.auth.id && deleted = false) || \"server\" = @request.auth.role"
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -1183,6 +1221,15 @@ migrate((app) => {
         },
         {
           "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
+        },
+        {
+          "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
           "onCreate": true,
@@ -1208,12 +1255,12 @@ migrate((app) => {
       "name": "inventories",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -1340,12 +1387,12 @@ migrate((app) => {
       "name": "inventory_items",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -1377,6 +1424,15 @@ migrate((app) => {
         },
         {
           "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
+        },
+        {
+          "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
           "onCreate": true,
@@ -1404,12 +1460,12 @@ migrate((app) => {
       "name": "inventory_item_tags",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -1455,6 +1511,15 @@ migrate((app) => {
         },
         {
           "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
+        },
+        {
+          "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
           "onCreate": true,
@@ -1480,12 +1545,12 @@ migrate((app) => {
       "name": "metadata",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -1559,6 +1624,15 @@ migrate((app) => {
         },
         {
           "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
+        },
+        {
+          "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
           "onCreate": true,
@@ -1584,12 +1658,12 @@ migrate((app) => {
       "name": "quest_plots",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -1668,6 +1742,15 @@ migrate((app) => {
         },
         {
           "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
+        },
+        {
+          "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
           "onCreate": true,
@@ -1693,12 +1776,12 @@ migrate((app) => {
       "name": "moments",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -1757,6 +1840,28 @@ migrate((app) => {
           "type": "text"
         },
         {
+          "cascadeDelete": false,
+          "collectionId": "pbc_4149302956",
+          "hidden": false,
+          "id": "relation2474291252",
+          "maxSelect": 1,
+          "minSelect": 0,
+          "name": "character",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "relation"
+        },
+        {
+          "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
+        },
+        {
           "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
@@ -1779,16 +1884,16 @@ migrate((app) => {
       ],
       "id": "pbc_1276319826",
       "indexes": [],
-      "listRule": "",
+      "listRule": "@collection.characters.id = character",
       "name": "statuses",
       "system": false,
       "type": "base",
-      "updateRule": "",
-      "viewRule": ""
+      "updateRule": "\"server\" = @request.auth.role",
+      "viewRule": "@collection.characters.id = character"
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -1820,6 +1925,15 @@ migrate((app) => {
         },
         {
           "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
+        },
+        {
+          "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
           "onCreate": true,
@@ -1845,12 +1959,12 @@ migrate((app) => {
       "name": "moments_tags",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -1881,6 +1995,15 @@ migrate((app) => {
         },
         {
           "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
+        },
+        {
+          "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
           "onCreate": true,
@@ -1906,12 +2029,12 @@ migrate((app) => {
       "name": "chat_states",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -1926,19 +2049,6 @@ migrate((app) => {
           "required": true,
           "system": true,
           "type": "text"
-        },
-        {
-          "cascadeDelete": false,
-          "collectionId": "pbc_1092069950",
-          "hidden": false,
-          "id": "relation3494172116",
-          "maxSelect": 1,
-          "minSelect": 0,
-          "name": "session",
-          "presentable": false,
-          "required": false,
-          "system": false,
-          "type": "relation"
         },
         {
           "autogeneratePattern": "",
@@ -2073,6 +2183,15 @@ migrate((app) => {
         },
         {
           "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
+        },
+        {
+          "hidden": false,
           "id": "autodate2990389176",
           "name": "created",
           "onCreate": true,
@@ -2098,12 +2217,12 @@ migrate((app) => {
       "name": "messages",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     },
     {
-      "createRule": "",
-      "deleteRule": "",
+      "createRule": "\"server\" = @request.auth.role",
+      "deleteRule": null,
       "fields": [
         {
           "autogeneratePattern": "[a-z0-9]{15}",
@@ -2118,6 +2237,15 @@ migrate((app) => {
           "required": true,
           "system": true,
           "type": "text"
+        },
+        {
+          "hidden": false,
+          "id": "bool3946532403",
+          "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
         },
         {
           "hidden": false,
@@ -2146,7 +2274,7 @@ migrate((app) => {
       "name": "chat_events",
       "system": false,
       "type": "base",
-      "updateRule": "",
+      "updateRule": "\"server\" = @request.auth.role",
       "viewRule": ""
     }
   ];
