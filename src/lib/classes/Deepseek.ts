@@ -39,6 +39,34 @@ class Deepseek {
 			'No response'
 		);
 	}
+
+	static async completion(message: string) {
+		const baseUrl = this.url;
+
+		const body = {
+			model: this.model,
+			messages: [{ role: 'user', content: message }]
+		};
+
+		const response = await fetch(baseUrl + '/chat/completions', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + this.token
+			},
+			body: JSON.stringify(body)
+		}).then((res) => res.json());
+		console.log('Response', response);
+
+		const agentMessage = response?.choices?.find((choice: any) => choice.index === 0)?.message?.content || 'No response'
+		const deepseekResponse = {
+			message: agentMessage,
+			message_id: response.id,
+			...response.usage,
+		}
+
+		return deepseekResponse;
+	}
 }
 
 export default Deepseek;
