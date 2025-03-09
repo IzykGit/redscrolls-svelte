@@ -2008,20 +2008,6 @@ migrate((app) => {
           "type": "relation"
         },
         {
-          "autogeneratePattern": "",
-          "hidden": false,
-          "id": "text2744374011",
-          "max": 0,
-          "min": 0,
-          "name": "state",
-          "pattern": "",
-          "presentable": false,
-          "primaryKey": false,
-          "required": false,
-          "system": false,
-          "type": "text"
-        },
-        {
           "hidden": false,
           "id": "bool3946532403",
           "name": "deleted",
@@ -2029,6 +2015,16 @@ migrate((app) => {
           "required": false,
           "system": false,
           "type": "bool"
+        },
+        {
+          "hidden": false,
+          "id": "json2744374011",
+          "maxSize": 0,
+          "name": "state",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "json"
         },
         {
           "hidden": false,
@@ -2242,7 +2238,7 @@ migrate((app) => {
       "id": "pbc_2605467279",
       "indexes": [],
       "listRule": "",
-      "name": "messages",
+      "name": "chat_messages",
       "system": false,
       "type": "base",
       "updateRule": "\"server\" = @request.auth.role",
@@ -2270,6 +2266,41 @@ migrate((app) => {
           "hidden": false,
           "id": "bool3946532403",
           "name": "deleted",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "bool"
+        },
+        {
+          "cascadeDelete": false,
+          "collectionId": "pbc_2605467279",
+          "hidden": false,
+          "id": "relation3065852031",
+          "maxSelect": 1,
+          "minSelect": 0,
+          "name": "message",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "relation"
+        },
+        {
+          "cascadeDelete": false,
+          "collectionId": "pbc_1549668336",
+          "hidden": false,
+          "id": "relation1542800728",
+          "maxSelect": 1,
+          "minSelect": 0,
+          "name": "state",
+          "presentable": false,
+          "required": false,
+          "system": false,
+          "type": "relation"
+        },
+        {
+          "hidden": false,
+          "id": "bool1114099747",
+          "name": "complete",
           "presentable": false,
           "required": false,
           "system": false,
