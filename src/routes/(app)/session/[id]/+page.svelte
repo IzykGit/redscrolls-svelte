@@ -56,39 +56,29 @@
 		state.session = _session;
 	};
 
-	const getSession = () => {
+	const refresh = () => {
 		Redscrolls.pb
 			.collection('sessions')
 			.getOne(id, {
 				expand: 'sessions,events,quests,metadata,characters,characters.metadata,characters.statuses'
 			})
-			.then((res) => {
-				if (!res) {
-					console.error('No session found');
-					return;
-				}
-				setSession(res);
-			});
+			.then((res) => setSession(res));
+
+		Redscrolls.pb
+			.collection('messages')
+			.getList(0, 10, {
+				filter: ''
+			})
+			.then((res) => setSession(res));
 	};
 
-	onMount(() => {
-		Redscrolls.pb.collection('sessions').subscribe('*', (e) => {
-			getSession();
-		});
+	onMount(async () => {
+		// Set up subscriptions
+		Redscrolls.pb.collection('sessions').subscribe('*', refresh);
+		Redscrolls.pb.collection('messages').subscribe('*', refresh);
+		Redscrolls.pb.collection('chat_events').subscribe('*', refresh);
 
-		Redscrolls.pb.collection('messages').subscribe('*', (e) => {
-			console.group('Message Event');
-			console.log();
-			console.groupEnd();
-		});
-
-		Redscrolls.pb.collection('chat_events').subscribe('*', (e) => {
-			console.group('Chat Event');
-			console.log();
-			console.groupEnd();
-		});
-
-		getSession();
+		// Get initial data
 	});
 </script>
 

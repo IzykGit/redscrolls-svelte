@@ -15,12 +15,7 @@ export default {
                     You are a GM for a fantasy story using D&D rules. Use the provided state object as context; 
                     do not modify it. Generate responses to continue the story interactively with the user.
                 `,
-                messages: [
-                    {
-                        actor: 'player',
-                        text: '{message}',
-                    },
-                ],
+                messages: [],
                 state: {},
                 options: {
                     audience: "User",
@@ -48,10 +43,7 @@ export default {
                 `,
                 template: {},
                 messages: [],
-<<<<<<< HEAD
-=======
                 state: {},
->>>>>>> main
                 options: {
                     audience: "System",
                     prose: "None",
