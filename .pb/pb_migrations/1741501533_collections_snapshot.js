@@ -723,6 +723,20 @@ migrate((app) => {
           "required": false,
           "system": false,
           "type": "bool"
+        },
+        {
+          "autogeneratePattern": "",
+          "hidden": false,
+          "id": "text1466534506",
+          "max": 0,
+          "min": 0,
+          "name": "role",
+          "pattern": "",
+          "presentable": false,
+          "primaryKey": false,
+          "required": false,
+          "system": false,
+          "type": "text"
         }
       ],
       "fileToken": {
@@ -1992,6 +2006,20 @@ migrate((app) => {
           "required": false,
           "system": false,
           "type": "relation"
+        },
+        {
+          "autogeneratePattern": "",
+          "hidden": false,
+          "id": "text2744374011",
+          "max": 0,
+          "min": 0,
+          "name": "state",
+          "pattern": "",
+          "presentable": false,
+          "primaryKey": false,
+          "required": false,
+          "system": false,
+          "type": "text"
         },
         {
           "hidden": false,
