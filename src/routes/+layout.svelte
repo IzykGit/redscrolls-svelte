@@ -58,7 +58,9 @@
 </div>
 
 {#if App.user.isAuthed()}
-	<div class="grid h-screen grid-cols-1 lg:grid-cols-[auto_1fr]">
+	<div
+		class="grid h-screen grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-[auto_1fr] lg:grid-rows-1"
+	>
 		<div class="hidden lg:contents">
 			<Minibar
 				navigate={(url?: string) => {
@@ -72,7 +74,7 @@
 		<div class="contents lg:hidden">
 			<MobileBar toggleMobile={() => (state.sidebarOpen = !state.sidebarOpen)} />
 		</div>
-		<div class="overflow-auto">
+		<div class="h-full overflow-auto">
 			{@render children()}
 		</div>
 	</div>

@@ -17,13 +17,9 @@ export default {
                 // `,
                 messages: [
                     {
-                        actor: 'agent',
-                        text: '',
-                    },
-                    {
                         actor: 'player',
-                        text: '',
-                    }
+                        text: '{message}',
+                    },
                 ],
                 state: {},
                 options: {
@@ -51,7 +47,7 @@ export default {
                     prompts you receive.
                 `,
                 template: {},
-                messages: {},
+                messages: [],
                 options: {
                     audience: "System",
                     prose: "None",

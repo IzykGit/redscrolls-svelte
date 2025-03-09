@@ -1,5 +1,7 @@
 // TODO: Need to standardize the models
-// - Use plurals for base models
+
+// - Use plurals for base models and m2m relationships
+// - Use singular for 1-1 relationships
 // - Any free-form kinds of data (like status or metadata) should always have "key" and "value" fields
 
 class Themer {
